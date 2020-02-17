@@ -75,9 +75,9 @@ function doOrder()
 	var t_price_sodas = num_sodas*PRICE_SODAS;
 	var tempsodas = parseFloat(num_sodas*PRICE_SODAS).toFixed(2);
 
-	document.getElementById("hotdogtext").innerHTML = num_hotdogs + " hotdogs at " + PRICE_HOTDOG + " is " + temphotdog;
-	document.getElementById("friestext").innerHTML = num_fries + " fries at " + PRICE_FRIES + " is " + tempfries;
-	document.getElementById("sodastext").innerHTML = num_sodas + " sodas at " + PRICE_SODAS + " is " + tempsodas;
+	document.getElementById("hotdogtext").innerHTML = num_hotdogs + " hotdogs at $" + PRICE_HOTDOG + " is $" + temphotdog;
+	document.getElementById("friestext").innerHTML = num_fries + " fries at $" + PRICE_FRIES + " is $" + tempfries;
+	document.getElementById("sodastext").innerHTML = num_sodas + " sodas at $" + PRICE_SODAS + " is $" + tempsodas;
 
 	var subtotal = t_price_hotdog + t_price_fries + t_price_sodas;
 	subtotal = parseFloat(subtotal).toFixed(2);
