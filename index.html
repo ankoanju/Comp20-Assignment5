@@ -27,6 +27,9 @@
 </div>
 
 <div id = "normaltext">
+	<p id = "hotdogtext"></p>
+	<p id = "friestext"></p>
+	<p id = "sodastext"></p>
 	<p id = "subt"></p>
 	<p id = "Discount"></p>
 	<p id = "newsubt"></p>
@@ -39,9 +42,9 @@
 
 
 <script>
-var PRICE_HOTDOG = 3.25;
-var PRICE_FRIES = 2.00;
-var PRICE_SODAS = 1.50;
+var PRICE_HOTDOG = parseFloat(3.25).toFixed(2);
+var PRICE_FRIES = parseFloat(2.00).toFixed(2);
+var PRICE_SODAS = parseFloat(1.50).toFixed(2);
 var MASS_TAX = 0.0625;
 var TAX_TOTAL = 1.0625;
 
@@ -51,6 +54,7 @@ function doOrder()
 	if (num_hotdogs == null){
 		num_hotdogs = 0;
 	}
+
 
 	var num_fries = document.getElementById("order_fr").value;
 	if (num_fries == null){
@@ -62,12 +66,21 @@ function doOrder()
 		num_sodas = 0;
 	}
 
-	var t_price_hotdog = parseFloat(num_hotdogs*PRICE_HOTDOG);
-	var t_price_fries = parseFloat(num_fries*PRICE_FRIES);
-	var t_price_sodas = parseFloat(num_sodas*PRICE_SODAS);
+	var t_price_hotdog = num_hotdogs*PRICE_HOTDOG;
+	var temphotdog = parseFloat(num_hotdogs*PRICE_HOTDOG).toFixed(2);
+
+	var t_price_fries = num_fries*PRICE_FRIES;
+	var tempfries = parseFloat(num_fries*PRICE_FRIES).toFixed(2);
+
+	var t_price_sodas = num_sodas*PRICE_SODAS;
+	var tempsodas = parseFloat(num_sodas*PRICE_SODAS).toFixed(2);
+
+	document.getElementById("hotdogtext").innerHTML = num_hotdogs + " hotdogs at " + PRICE_HOTDOG + " is " + temphotdog;
+	document.getElementById("friestext").innerHTML = num_fries + " fries at " + PRICE_FRIES + " is " + tempfries;
+	document.getElementById("sodastext").innerHTML = num_sodas + " sodas at " + PRICE_SODAS + " is " + tempsodas;
 
 	var subtotal = t_price_hotdog + t_price_fries + t_price_sodas;
-	subtotal = subtotal.toFixed(2);
+	subtotal = parseFloat(subtotal).toFixed(2);
 	document.getElementById("subt").innerHTML = "Subtotal is $" + subtotal;
 
 	var discount;
