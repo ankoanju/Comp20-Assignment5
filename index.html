@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<meta charset="UTF-8">
+</head>
+<title> Joe's Hotdog Stand </title>
+<body>
+
+</br>
+<div id = "titletext"> Joe's Hotdog Stand </div>
+</br></br>
+
+<div>
+<form id = "orderform">
+	<div id = "foodtext"> Hotdogs 🌭 </div>
+	<input type="text" id = "order_hd" placeholder = "Enter number of hotdogs"><br></br>
+
+	<div id = "foodtext"> Fries 🍟 </div>
+	<input type="text" id = "order_fr" placeholder = "Enter number of fries"><br></br>
+
+	<div id = "foodtext"> Soda🥤 </div>
+	<input type = "text" id = "order_sd" placeholder = "Enter number of soda"><br></br>
+
+	<button type = "button" onclick = "doOrder()">Submit Order</button>
+</form>
+</div>
+
+<div id = "normaltext">
+	<p id = "subt"></p>
+	<p id = "Discount"></p>
+	<p id = "newsubt"></p>
+	<p id = "taxamt"></p>
+</div>
+
+<div id = "finaltext">
+	<p id = "result"></p>
+</div>
+
+
+<script>
+var PRICE_HOTDOG = 3.25;
+var PRICE_FRIES = 2.00;
+var PRICE_SODAS = 1.50;
+var MASS_TAX = 0.0625;
+var TAX_TOTAL = 1.0625;
+
+function doOrder()
+{
+	var num_hotdogs = document.getElementById("order_hd").value;
+	if (num_hotdogs == null){
+		num_hotdogs = 0;
+	}
+
+	var num_fries = document.getElementById("order_fr").value;
+	if (num_fries == null){
+		num_fries = 0;
+	}
+
+	var num_sodas = document.getElementById("order_sd").value;
+	if (num_sodas == null){
+		num_sodas = 0;
+	}
+
+	var t_price_hotdog = parseFloat(num_hotdogs*PRICE_HOTDOG);
+	var t_price_fries = parseFloat(num_fries*PRICE_FRIES);
+	var t_price_sodas = parseFloat(num_sodas*PRICE_SODAS);
+
+	var subtotal = t_price_hotdog + t_price_fries + t_price_sodas;
+	subtotal = subtotal.toFixed(2);
+	document.getElementById("subt").innerHTML = "Subtotal is $" + subtotal;
+
+	var discount;
+	if (subtotal >= 20.00){
+		discount = (subtotal*0.10).toFixed(2);
+		document.getElementById("Discount").innerHTML = "10% discount applied!😆 Discount: $" + discount;
+	}else {
+		discount = 0;
+		document.getElementById("Discount").innerHTML = "No discount applied 😢";
+	}
+
+	var temp = parseFloat(subtotal - discount).toFixed(2);
+	document.getElementById("newsubt").innerHTML = "New subtotal: $" + temp;
+
+	var tax = parseFloat(temp*MASS_TAX).toFixed(2);
+	document.getElementById("taxamt").innerHTML = "Tax: $" + tax;
+
+	var total = parseFloat(temp*TAX_TOTAL).toFixed(2);
+	document.getElementById("result").innerHTML = "💰Total: $" + total + " 💰";
+
+}
+
+</script>
+
+</body>
+</html>
